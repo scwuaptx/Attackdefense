@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Description of project1:
+
+Write two programs with the following properties:
+
+On a host, called server host, write a program, called password_holder.c, that allows a user to input a character string.
+        
+After obtaining an input string from a user, password_holder.c opens a TCP/IP socket and listens on the socket to wait for any incoming request from a host, called client host.
+        
+When an incoming connection is established, password_holder.c sends the input string to the the client host as a password.
+        
+On a host, called client host, write a program, called mission_impossible.c, that connects to the above remote server to retrieve a password.
+      
+The compiled executable file of mission_impossible.c is called mission_impossible.exe.
+        
+After obtaining a password from the above server, mission_impossible.c asks its users to input a password.
+        
+If an input password is identical to the passwrod that mission_impossible.c retrieved from the above server, the program will execute a piece of code, called Mission Briefing Code (MBC) hereafter, that will display the following message ("Ethan Hunt, Run Now!") for 2 minutes and then delete the file mission_impossible.exe and terminate itself.
+        
+If an erroneous password is input, the program will delete the file mission_impossible.c and terminate itself.
+        
+Initially, MBC must be stored in a global array and is encoded with your password. You can use any approach to encode MBC. When the input password is correct, your program will decode MBC and place it in the heap and then transfer your execution flow to the decoded MBC. 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MBCcorrect.asm :
+
+	When the code of MBCcorrect.asm been executed, the string "Ethan Hunt, Run Now!" would be print and mission_impossible.exe would be deleted.
+
+MBCerror.asm 
+	
+	When the code of MBCerror.asm been executed, mission_impossible.c would be deleted immediately.
+
+	
