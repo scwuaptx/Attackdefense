@@ -53,7 +53,7 @@ _start:
 	push eax
 	mov edx, esp
 
-	;push "text" in reverse
+	;push "mission_impossible.exe" in reverse
 	
 	push word 0x6578
 	push 0x652e656c
