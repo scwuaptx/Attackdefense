@@ -21,7 +21,7 @@ If an erroneous password is input, the program will delete the file mission_impo
         
 Initially, MBC must be stored in a global array and is encoded with your password. You can use any approach to encode MBC. When the input password is correct, your program will decode MBC and place it in the heap and then transfer your execution flow to the decoded MBC. 
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------This project only can be execue on i386.
 
 MBCcorrect.asm :
 
@@ -59,4 +59,6 @@ then you will get shellcode of MBC such as
 	
 "\x31\xc0\x50\x6a\x0a\x68\x4e\x6f\x77\x21\x68\x52\x75\x6e\x20\x68\x6e\x74\x2c\x20\x68\x6e\x20\x48\x75\x68\x45\x74\x68\x61\x89\xe1\xb0\x04\x31\xdb\xb2\x15\xcd\x80\x31\xc0\x31\xdb\x31\xc9\x50\x50\x6a\x78\x89\xe3\xb0\xa2\xcd\x80\x31\xc0\x50\x68\x6e\x2f\x72\x6d\x68\x2f\x2f\x62\x69\x89\xe3\x50\x89\xe2\x66\x68\x78\x65\x68\x6c\x65\x2e\x65\x68\x73\x73\x69\x62\x68\x69\x6d\x70\x6f\x68\x69\x6f\x6e\x5f\x68\x6d\x69\x73\x73\x89\xe6\x50\x56\x53\x89\xe1\xb0\x0b\xcd\x80\xb0\x01\x31\xdb\xcd\x80"
 
-	
+--------------------------------------------------------------------------------------
+Shellcode.c is a example to change eip to your shellcode.
+You need to let the stack can be execue.i.e. "gcc -z execstack shellcode.c -o shellcode.exe"
