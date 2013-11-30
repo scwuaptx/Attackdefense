@@ -21,7 +21,8 @@ If an erroneous password is input, the program will delete the file mission_impo
         
 Initially, MBC must be stored in a global array and is encoded with your password. You can use any approach to encode MBC. When the input password is correct, your program will decode MBC and place it in the heap and then transfer your execution flow to the decoded MBC. 
 
----------------------------------------------------------------------------------------------------This project only can be execue on i386.
+--------------------------------------------------------------------------------------------------
+This project only can be execue on i386.
 
 MBCcorrect.asm :
 
