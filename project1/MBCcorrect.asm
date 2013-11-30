@@ -12,9 +12,9 @@ _start:
 	push 0x7548206e
 	push 0x61687445
 	mov ecx,esp
-	mov eax, 4
-        mov ebx, 0
-        mov edx, 21
+	mov al, 4
+        xor ebx,ebx
+        mov dl, 21
         int 0x80
 ;------------------------sleep 2 minutes--------------------------
 ;int nanosleep(const struct timespec *req, struct timespec *rem);
@@ -79,7 +79,7 @@ _start:
 
 	mov al,11
 	int 0x80
-	mov eax,1
-	mov ebx,0
+	mov al,1
+	xor ebx,ebx
 	int 0x80
 
