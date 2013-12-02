@@ -66,4 +66,6 @@ You need to let the stack can be execue.i.e. "gcc -z execstack shellcode.c -o sh
 
 
 decode.asm
-it can decode shellcode with key in enshellcode.c by itself 
+It can decode shellcode with key in enshellcode.c by itself.But you need to encode the decode block in decode.asm first.That is encode "\x25\xc0\x94\x84\xff\x07\x7f\x3e\x4e\xfa\xc4\x00\x2c\x34\x25\xcb\x26\x23\x31\x31\x31" to "\xeb\x0e\x5a\x4a\x31\xc9\xb1\xf0\x80\x34\x0a\xce\xe2\xfa\xeb\x05\xe8\xed\xff\xff\xff".
+
+Then the decode block will be decode when you want to encode your shellcode.When you execue your enshellcode it will be decode by itself,then execue your shellcode.
