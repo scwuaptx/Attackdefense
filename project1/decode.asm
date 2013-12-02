@@ -1,6 +1,8 @@
 global _start
 section .text
 _start:
+
+;-------------------decode with key 0xce---------------------
 	jmp DecodeFinal
 Decode_Start:
 	pop edx
@@ -8,7 +10,7 @@ Decode_Start:
 	xor ecx,ecx
 	mov cl,0xf0
 Decode_loop:
-	xor byte [edx+ecx],0xce
+	xor byte [edx+ecx],0xce   ;key=0xce
 	loop Decode_loop
 	jmp DecodeEnd
 DecodeFinal:
