@@ -1,7 +1,20 @@
 global _start
-
 section .text
 _start:
+	jmp DecodeFinal
+Decode_Start:
+	pop edx
+	dec edx
+	xor ecx,ecx
+	mov cl,0xf0
+Decode_loop:
+	xor byte [edx+ecx],0xce
+	loop Decode_loop
+	jmp DecodeEnd
+DecodeFinal:
+	call Decode_Start
+DecodeEnd:
+
 ;---------------------printf-------------------------------------
 	xor eax,eax
 	xor ebx,ebx
@@ -29,7 +42,7 @@ _start:
 	; push 0x00000000 on the stack 
 	push eax
 	push eax
-	push byte 0x78  ;req->tv_sec 0x78 = 120
+	push byte 0x0a  ;req->tv_sec 0x78 = 120
 
 	mov ebx,esp
 	mov al, 0xa2 ; nanosleep = 162, or 0xa2
@@ -55,7 +68,7 @@ _start:
 	push eax
 	mov edx, esp
 
-	;push "mission_impossible.exe" in reverse
+	;push "text" in reverse
 	
 	push word 0x6578
 	push 0x652e656c
