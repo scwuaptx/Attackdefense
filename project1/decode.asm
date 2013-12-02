@@ -2,7 +2,8 @@ global _start
 section .text
 _start:
 
-;-------------------decode with key 0xce---------------------
+;----------------------decode block-----------------------------
+;----------------------decode with key 0xce---------------------
 	jmp DecodeFinal
 Decode_Start:
 	pop edx
