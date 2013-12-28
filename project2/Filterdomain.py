@@ -6,7 +6,7 @@
 import os
 import popen2
 
-#NumberOFIP() check the number of ip which is forwarded by the domain
+#NumberOfIP() check the number of ip which is forwarded by the domain
 def NumberOfIP(domain):
 	IP,DataIn = popen2.popen2("host -t A "+domain)
 	SeparateIP = (IP.read()).split("\n")
