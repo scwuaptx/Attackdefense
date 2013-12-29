@@ -6,4 +6,4 @@ The project is find 4 bad fast-flux domain and 7 good fast-flux domain.Which dom
 
 Filterdomain.py
 ===============
---the program will filter the domain which forward less 4 different ip.
+the program will filter the domain which forward less 4 different ip and the ip are different form asn
