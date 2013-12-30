@@ -11,4 +11,9 @@ the program will filter the domain which forward less 4 different ip and the ip 
 FilterdomainV2.py
 =================
 
-the program is similar as Filterdomain.py but it use three dns server to filter
+the program is similar as Filterdomain.py but it use three dns server to filter.
+
+FilterdomainV3.py
+=================
+
+the program is similar as FilterdomainV2.py but fliter the cdn domain.
