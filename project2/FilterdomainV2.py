@@ -43,12 +43,14 @@ def NumberOfAsn(domain):
 			temp = SeparateIP[i].split()
 			if len(temp) > 0 :
 				IP = temp[3]
-				if IP not in "alias" :
+				try :
 					ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
 					SeparateASN = (ASNOut.read()).split("\n")
 					temp = SeparateASN[1].split()
 					if temp[0] not in ASN :
 						ASN.append(temp[0])
+				except :
+					continue
 	return len(ASN)	
 
 if __name__=='__main__':
