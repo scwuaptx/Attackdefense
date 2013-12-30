@@ -43,15 +43,14 @@ def NumberOfAsn(domain):
 			temp = SeparateIP[i].split()
 			if len(temp) > 0 :
 				IP = temp[3]
-				if IP not in "alias" :
-					try :
-						ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
-						SeparateASN = (ASNOut.read()).split("\n")
-						temp = SeparateASN[1].split()
-						if temp[0] not in ASN :
-							ASN.append(temp[0])
-					except :
-						continue
+				try :
+					ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
+					SeparateASN = (ASNOut.read()).split("\n")
+					temp = SeparateASN[1].split()
+					if temp[0] not in ASN :
+						ASN.append(temp[0])
+				except :
+					continue
 	return len(ASN)	
 
 def TryCDN(domain):
@@ -61,8 +60,7 @@ def TryCDN(domain):
 	for i in CDN :
 		if i in SeparateIP :
 			return 1
-		else :
-			return 0
+	return 0
 
 if __name__=='__main__':
 	fileopengood = open('goodresult','w')
