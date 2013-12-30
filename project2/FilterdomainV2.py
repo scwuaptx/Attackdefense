@@ -27,7 +27,7 @@ def NumberOfIP(domain):
 def NumberOfAsn(domain):
 	ASN = []
 	domain = "".join(domain.split())
-	for dns in [" 168.95.4.10"," 140.115.50.1"," 8.8.8.8"]:
+	for dns in [" "," 140.115.50.1"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
 		SeparateIP = (DataOut.read()).split("\n")
 		number = len(SeparateIP)
