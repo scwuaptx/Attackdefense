@@ -14,12 +14,17 @@ def NumberOfIP(domain):
 	for dns in [" "," 140.115.50.1"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
 		SeparateIP = (DataOut.read()).split("\n")
-		for i in range (5,len(SeparateIP)-1):
+		if dns == " " :
+			head = 0
+		else :
+			head = 5
+		for i in range (head,len(SeparateIP)-1):
 			temp = SeparateIP[i].split()
-			IP = temp[3]
-			if IP not in "alias" :
-				if IP not in IPlist :
-					IPlist.append(IP)
+			if len(temp) > 0 :
+				IP = temp[3]
+				if IP not in "alias" :
+					if IP not in IPlist :
+						IPlist.append(IP)
 
 	return len(IPlist)
 
@@ -30,16 +35,20 @@ def NumberOfAsn(domain):
 	for dns in [" "," 140.115.50.1"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
 		SeparateIP = (DataOut.read()).split("\n")
-		number = len(SeparateIP)
-		for i in range(5,number-1):
+		if dns == " " :
+			head = 0
+		else :
+			head = 5
+		for i in range(head, len(SeparateIP) - 1):
 			temp = SeparateIP[i].split()
-			IP = temp[3]
-			if IP not in "alias" :
-				ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
-				SeparateASN = (ASNOut.read()).split("\n")
-				temp = SeparateASN[1].split()
-				if temp[0] not in ASN :
-					ASN.append(temp[0])
+			if len(temp) > 0 :
+				IP = temp[3]
+				if IP not in "alias" :
+					ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
+					SeparateASN = (ASNOut.read()).split("\n")
+					temp = SeparateASN[1].split()
+					if temp[0] not in ASN :
+						ASN.append(temp[0])
 	return len(ASN)	
 
 if __name__=='__main__':
