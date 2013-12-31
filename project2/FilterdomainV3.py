@@ -54,7 +54,7 @@ def NumberOfAsn(domain):
 	return len(ASN)	
 
 def TryCDN(domain):
-	CDN = ["akamai","cdn"]
+	CDN = ["akamai","cdn","akafms","amazon"]
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
 	SeparateIP = (DataOut.read()).split(".")
 	for i in CDN :
