@@ -68,7 +68,7 @@ if __name__=='__main__':
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
 		if NumberOfIP(domain) > 4 :
-			if NumberOfAsn(domain) > 1 and TryCDN(domain) == 0 :
+			if TryCDN(domain) == 0 and NumberOfAsn(domain) > 1 :
 				fileopenbad.write(domain)
 			else :
 				fileopengood.write(domain)
