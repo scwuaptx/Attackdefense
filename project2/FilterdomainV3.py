@@ -53,6 +53,7 @@ def NumberOfAsn(domain):
 					continue
 	return len(ASN)	
 
+#TryCDN will check the domain whether belong to cdn.
 def TryCDN(domain):
 	CDN = ["akamai","cdn","akafms","amazon"]
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
