@@ -55,7 +55,7 @@ def NumberOfAsn(domain):
 
 #TryCDN will check the domain whether belong to cdn.
 def TryCDN(domain):
-	CDN = ["akamai","cdn","akafms","amazon"]
+	CDN = ["akamai","cdn","akafms","amazon","google","adobe"]
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
 	SeparateIP = (DataOut.read()).split(".")
 	for i in CDN :
