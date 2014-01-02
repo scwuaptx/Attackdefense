@@ -54,16 +54,16 @@ def TryCDN(domain):
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
 	SeparateIP = (DataOut.read()).split(".")
 	for i in CDN :
-		if i in SeparateIP :
-			return 1
-	return 0
+		if i in DataOut.read() :
+			return True
+	return False
 
 if __name__=='__main__':
 	fileopengood = open('goodresult','w')
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
 		if NumberOfIP(domain) > 4 :
-			if TryCDN(domain) == 0 and NumberOfAsn(domain) > 1 :
+			if TryCDN(domain) == 0 and NumberOfAsn(domain) :
 				fileopenbad.write(domain)
 			else :
 				fileopengood.write(domain)
