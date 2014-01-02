@@ -13,18 +13,17 @@ def NumberOfIP(domain):
 	domain = "".join(domain.split())
 	for dns in [" "," 140.115.50.1"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
-		SeparateIP = (DataOut.read()).split("\n")
-		if dns == " " :
-			head = 0
-		else :
-			head = 5
-		for i in range (head,len(SeparateIP)-1):
+		SeparateIP = DataOut.readlines()
+		for i in range (len(SeparateIP)-1):
 			temp = SeparateIP[i].split()
 			if len(temp) > 0 :
-				IP = temp[3]
-				if IP not in "alias" :
-					if IP not in IPlist :
-						IPlist.append(IP)
+				try :
+					IP = temp[3]
+					if IP not in "alias" :
+						if IP not in IPlist :
+							IPlist.append(IP)
+				except:
+					continue
 
 	return len(IPlist)
 
@@ -34,16 +33,12 @@ def NumberOfAsn(domain):
 	domain = "".join(domain.split())
 	for dns in [" "," 140.115.50.1"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
-		SeparateIP = (DataOut.read()).split("\n")
-		if dns == " " :
-			head = 0
-		else :
-			head = 5
-		for i in range(head, len(SeparateIP) - 1):
+		SeparateIP = DataOut.readlines()
+		for i in range(len(SeparateIP) - 1):
 			temp = SeparateIP[i].split()
 			if len(temp) > 0 :
-				IP = temp[3]
 				try :
+					IP = temp[3]
 					ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
 					SeparateASN = (ASNOut.read()).split("\n")
 					temp = SeparateASN[1].split()
@@ -55,20 +50,20 @@ def NumberOfAsn(domain):
 
 #TryCDN will check the domain whether belong to cdn.
 def TryCDN(domain):
-	CDN = ["akamai","cdn","akafms","amazon","google","adobe","chinacache"]
+	CDN = ["akamai","cdn","akafms","amazon","google","adobe"]
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
 	SeparateIP = (DataOut.read()).split(".")
 	for i in CDN :
 		if i in SeparateIP :
-			return True
-	return False
+			return 1
+	return 0
 
 if __name__=='__main__':
 	fileopengood = open('goodresult','w')
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
 		if NumberOfIP(domain) > 4 :
-			if TryCDN(domain) == 0 and NumberOfAsn(domain) :
+			if TryCDN(domain) == 0 and NumberOfAsn(domain) > 1 :
 				fileopenbad.write(domain)
 			else :
 				fileopengood.write(domain)
