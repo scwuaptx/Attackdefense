@@ -54,7 +54,7 @@ def TryCDN(domain):
 	DataOut,DataIn = popen2.popen2("host -t NS " + domain)
 	SeparateIP = (DataOut.read()).split(".")
 	for i in CDN :
-		if i in DataOut.read() :
+		if i in SeparateIP :
 			return True
 	return False
 
