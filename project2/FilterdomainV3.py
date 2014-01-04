@@ -6,6 +6,7 @@
 
 import os
 import popen2
+from time import time
 
 #NumberOfIP() check the number of ip which is forwarded by the domain
 def NumberOfIP(domain):
@@ -59,6 +60,7 @@ def TryCDN(domain):
 	return False
 
 if __name__=='__main__':
+	t = time()
 	fileopengood = open('goodresult','w')
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
@@ -70,3 +72,4 @@ if __name__=='__main__':
 				
 	fileopengood.close()
 	fileopenbad.close()
+	print time() - t
