@@ -2,11 +2,13 @@
 # -*- coding: UTF-8 -*-
 #The program will filiter the domain,which forward ip less than 4,then record it in the goodresult
 #If the asn of ip are different ,then record it in the badresult
-#Source file : list   Result file : result 
+#Source file : list   Result file : goodresult and badreuslt
+#if IP > 4 and ASN > 1 and not cdn than record in badresult
+#if IP > 4 but ASN == 1 or is cdn than record in goodresult
 
 import os
 import popen2
-from time import time
+
 
 #DomainToIP() return ip list which is forwarded by the domain
 def DomainToIP(domain):
@@ -54,7 +56,6 @@ def TryCDN(domain):
 	return False
 
 if __name__=='__main__':
-	t = time()
 	fileopengood = open('goodresult','w')
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
@@ -67,4 +68,4 @@ if __name__=='__main__':
 				
 	fileopengood.close()
 	fileopenbad.close()
-	print time() - t
+
