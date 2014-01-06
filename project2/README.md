@@ -20,3 +20,8 @@ FilterdomainV3.py
 =================
 
 the program is similar as FilterdomainV2.py but fliter the cdn domain.
+
+FilterdomainV3.1.py
+-------------------
+
+The program is similar as FilterdomainV3.p but add detect of different country
