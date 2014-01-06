@@ -32,18 +32,23 @@ def DomainToIP(domain):
 
 #NumberOfAsn() return the asn which is forwarded by the IP 
 def IPtoASN(IPlist):
-	ASN = []
+	ASNlist = []
+	Countrylist = []
 	for IP in IPlist :
 		try :
-			ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com "+IP)		
+			ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com -c "+IP)		
 			SeparateASN = (ASNOut.read()).split("\n")
-			temp = SeparateASN[1].split()
-			if temp[0] not in ASN :
-				ASN.append(temp[0])
+			temp = SeparateASN[2].split('|')
+			ASN = temp[0]
+			Country = temp[2]
+			if ASN not in ASNlist :
+				ASNlist.append(ASN)
+			if Country not in Countrylist :
+				Countrylist.append(Country)
 		except :
 			continue
 		
-	return ASN	
+	return ASNlist,Countrylist
 
 #TryCDN will check the domain whether belong to cdn.
 def TryCDN(domain):
@@ -60,8 +65,9 @@ if __name__=='__main__':
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
 		IPlist = DomainToIP(domain)
+		ASNlist,Countrylist = IPtoASN(IPlist)
 		if len(IPlist) > 4 :
-			if not TryCDN(domain) and len(IPtoASN(IPlist)) > 1 :
+			if not TryCDN(domain) and len(ASNlist) > 1 and len(Countrylist) > 1 :
 				fileopenbad.write(domain)
 			else :
 				fileopengood.write(domain)
