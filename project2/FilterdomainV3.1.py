@@ -3,7 +3,7 @@
 #The program will filiter the domain,which forward ip less than 4,then record it in the goodresult
 #If the asn of ip are different ,then record it in the badresult
 #Source file : list   Result file : goodresult and badreuslt
-#if IP > 4 and ASN > 1 and not cdn than record in badresult
+#if IP > 4 and ASN > 1 and Country > 1 and Var > 0 and not cdn than record in badresult
 #if IP > 4 but ASN == 1 or is cdn than record in goodresult
 
 import os
@@ -12,7 +12,7 @@ import popen2
 
 #DomainToIP() return ip list which is forwarded by the domain
 def DomainToIP(domain):
-	IPlist=[]
+	IPlist={}
 	domain = "".join(domain.split())
 	for dns in [" "," 139.175.55.244"," 8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("host -t A " + domain + dns)
@@ -21,19 +21,20 @@ def DomainToIP(domain):
 			temp = SeparateIP[i].split()
 			if len(temp) > 0 :
 				try :
-					IP = temp[3]
-					if IP not in "alias" :
+					IP = temp[3].strip()
+					if not IP is "alias" :
 						if IP not in IPlist :
-							IPlist.append(IP)
+							IPlist[IP] = 1
+						else :
+							IPlist[IP] = IPlist[IP] + 1
 				except:
 					continue
 
  	return IPlist
 
-#NumberOfAsn() return the asn which is forwarded by the IP 
+#NumberOfAsn() return the asn with country which is forwarded by the IP 
 def IPtoASN(IPlist):
-	ASNlist = []
-	Countrylist = []
+	ASNlist = {}
 	for IP in IPlist :
 		try :
 			ASNOut,IPIN = popen2.popen2("whois -h whois.cymru.com -c "+IP)		
@@ -42,13 +43,11 @@ def IPtoASN(IPlist):
 			ASN = temp[0]
 			Country = temp[2]
 			if ASN not in ASNlist :
-				ASNlist.append(ASN)
-			if Country not in Countrylist :
-				Countrylist.append(Country)
+				ASNlist[ASN] = Country
 		except :
 			continue
 		
-	return ASNlist,Countrylist
+	return ASNlist	
 
 #TryCDN will check the domain whether belong to cdn.
 def TryCDN(domain):
@@ -60,14 +59,23 @@ def TryCDN(domain):
 			return True
 	return False
 
+#Variance_IP() calculate Variance of IP
+def Variance_IP(IPlist):
+	Variance = 0
+	mean = float(sum(IPlist.values())/len(IPlist))
+	for IP in IPlist :
+		Variance += (IPlist[IP]-mean)**2
+	return float(Variance/len(IPlist))
+
 if __name__=='__main__':
 	fileopengood = open('goodresult','w')
 	fileopenbad = open('badresult','w')	
 	for domain in open('list'):  
 		IPlist = DomainToIP(domain)
-		ASNlist,Countrylist = IPtoASN(IPlist)
+		ASNlist = IPtoASN(IPlist)
+		Country = set(ASNlist.values())
 		if len(IPlist) > 4 :
-			if not TryCDN(domain) and len(ASNlist) > 1 and len(Countrylist) > 1 :
+			if not TryCDN(domain) and Variance_IP(IPlist) > 0 and len(ASNlist) > 1 and len(Country) > 1:
 				fileopenbad.write(domain)
 			else :
 				fileopengood.write(domain)
