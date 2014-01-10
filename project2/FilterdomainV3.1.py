@@ -13,6 +13,7 @@ import popen2
 #DomainToIP() return ip list which is forwarded by the domain
 def DomainToIP(domain):
 	IPlist={}
+	TTL = 0
 	domain = "".join(domain.split())
 	for dns in [" "," @139.175.55.244"," @8.8.8.8"]:
 		DataOut,DataIn = popen2.popen2("dig +noall +answer " + domain + dns)
