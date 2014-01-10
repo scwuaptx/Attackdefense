@@ -81,6 +81,8 @@ if __name__=='__main__':
 			if not TryCDN(domain) and Variance_IP(IPlist) > 0 and TTL < 600 :
 				if len(ASNlist) > 1 and len(Country) > 1 :
 					fileopenbad.write(domain)
+				else :
+					fileopengood.write(domain)
 			else :
 					fileopengood.write(domain)
 				
