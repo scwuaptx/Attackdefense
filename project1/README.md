@@ -1,5 +1,4 @@
-========================
-Description of project1:
+Description of project1
 ========================
 
 Write two programs with the following properties:
@@ -25,12 +24,12 @@ Initially, MBC must be stored in a global array and is encoded with your passwor
 
 **This project only can be execue on i386.**
 
-MBCcorrect.asm :
-----------------
+MBCcorrect.asm
+--------------
 When the code of MBCcorrect.asm been executed, the string "Ethan Hunt, Run Now!" would be print and mission\_impossible.exe would be deleted.
 
-MBCerror.asm  :
----------------
+MBCerror.asm 
+-------------
 When the code of MBCerror.asm been executed, mission\_impossible.c would be deleted immediately.
 
 
@@ -62,8 +61,8 @@ Then your file(mission\-impossible.exe) will be deleted
 **if there is some error in your asm code, you can use "gdb debugger" to disassmbler.**
 
 
-How to get the shellcode of MBC :
----------------------------------
+How to get the shellcode of MBC 
+--------------------------------
 
 You can user the ShellcodeProduct.py to produce the Shellcode::
 	
