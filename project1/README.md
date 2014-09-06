@@ -37,25 +37,25 @@ When the code of MBCerror.asm been executed, mission\_impossible.c would be dele
 
 How to execute MBC code:
 	
-+Step 1 :
+####Step 1 :
 
 You need to install "nasm" first.If your OS is Ubuntu,you can type
 
 	sudo apt-get install nasm
 
-+Step 2 :
+####Step 2 :
 
 	nasm -f elf32 MBCcorrect.asm -o MBCcorrect.o
 
-+Step 3 :
+####Step 3 :
 
 	ld MBCcorrect.o -o MBCcorrect
 
-+Step 4 :
+####Step 4 :
 
 	./MBCcorrect 
 
-+Step 5 :
+####Step 5 :
 Then your file(mission\-impossible.exe) will be deleted
 
 	MBCerror.asm is similary as MBCcorrect.asm
@@ -70,12 +70,6 @@ You can user the ShellcodeProduct.py to produce the Shellcode::
 	
 	python ShellcodeProduct.py "your file of asm"
 
-
-
-	
-
-
-----------------------------------------------------------------------------
 
 Remark
 ------
