@@ -25,7 +25,6 @@ Initially, MBC must be stored in a global array and is encoded with your passwor
 
 **This project only can be execue on i386.**
 
-----------------------------------------------------------------
 MBCcorrect.asm :
 ----------------
 When the code of MBCcorrect.asm been executed, the string "Ethan Hunt, Run Now!" would be print and mission\_impossible.exe would be deleted.
@@ -58,7 +57,7 @@ You need to install "nasm" first.If your OS is Ubuntu,you can type
 ####Step 5 :
 Then your file(mission\-impossible.exe) will be deleted
 
-	MBCerror.asm is similary as MBCcorrect.asm
+**MBCerror.asm is similary as MBCcorrect.asm**
 
 **if there is some error in your asm code, you can use "gdb debugger" to disassmbler.**
 
