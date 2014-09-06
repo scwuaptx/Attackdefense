@@ -1,5 +1,5 @@
-Description of project1
-========================
+Description
+===========
 
 Write two programs with the following properties:
 
@@ -56,7 +56,7 @@ You need to install "nasm" first.If your OS is Ubuntu,you can type
 ####Step 5 :
 Then your file(mission\-impossible.exe) will be deleted
 
-**MBCerror.asm is similary as MBCcorrect.asm**
+
 
 **if there is some error in your asm code, you can use "gdb debugger" to disassmbler.**
 
@@ -72,6 +72,8 @@ You can user the ShellcodeProduct.py to produce the Shellcode::
 Remark
 ------
 
+**MBCerror.asm is similary as MBCcorrect.asm**
+
 Shellcode.c is a example to change eip to your shellcode.
 You need to let the stack can be execue.i.e. "gcc -z execstack shellcode.c -o shellcode.exe"
 
@@ -79,6 +81,12 @@ You need to let the stack can be execue.i.e. "gcc -z execstack shellcode.c -o sh
 decode.asm
 ----------
 
-It can decode shellcode with key in enshellcode.c by itself.But you need to encode the decode block in decode.asm first.That is encode  "\xeb\x0e\x5a\x4a\x31\xc9\xb1\xf0\x80\x34\x0a\xce\xe2\xfa\xeb\x05\xe8\xed\xff\xff\xff" to "\x25\xc0\x94\x84\xff\x07\x7f\x3e\x4e\xfa\xc4\x00\x2c\x34\x25\xcb\x26\x23\x31\x31\x31".
+It can decode shellcode with key in enshellcode.c by itself.But you need to encode the decode block in decode.asm first.
+
+That is encode 
+
+	"\xeb\x0e\x5a\x4a\x31\xc9\xb1\xf0\x80\x34\x0a\xce\xe2\xfa\xeb\x05\xe8\xed\xff\xff\xff"
+to
+	"\x25\xc0\x94\x84\xff\x07\x7f\x3e\x4e\xfa\xc4\x00\x2c\x34\x25\xcb\x26\x23\x31\x31\x31".
 
 Then the decode block will be decode when you want to encode your shellcode.When you execue your enshellcode it will be decode by itself,then execue your shellcode.
