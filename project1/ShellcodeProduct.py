@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-# the prgram will product shellcode form a completed assembly code
-# You can use the command "python shellcodeProduct.py 'your program'" to get the shellcode
+# the prgram will product shellcode form a assembly code
+# You can use the command "python shellcodeProduct.py 'your file of asm'" to get the shellcode
 
 import sys,os
 
@@ -15,5 +15,13 @@ def disasm(filename) :
 	shellcode = "\\x" +  "\\x".join(bistream)
 	return shellcode
 if __name__=='__main__' :
-	print disasm(sys.argv[1])
+	if len(sys.argv) < 2 :
+		print "Please input a asmfile"
+	else :
+		asmfile = sys.argv[1]
+		objfile = sys.argv[1].strip(".asm") + ".o"
+		exefile = sys.argv[1].strip(".asm")
+		os.system("nasm -f elf32 " + asmfile + " -o " + objfile)
+		os.system("ld " + objfile + " -o " + exefile)
+		print disasm(exefile)
 
