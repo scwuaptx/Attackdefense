@@ -23,7 +23,7 @@ If an erroneous password is input, the program will delete the file mission\_imp
 Initially, MBC must be stored in a global array and is encoded with your password. You can use any approach to encode MBC. When the input password is correct, your program will decode MBC and place it in the heap and then transfer your execution flow to the decoded MBC. 
 
 
-*This project only can be execue on i386.*
+**This project only can be execue on i386.**
 
 ----------------------------------------------------------------
 MBCcorrect.asm :
@@ -37,28 +37,30 @@ When the code of MBCerror.asm been executed, mission\_impossible.c would be dele
 
 How to execute MBC code:
 	
-	Step 1 :
++Step 1 :
 
-		You need to install "nasm" first.
+You need to install "nasm" first.If your OS is Ubuntu,you can type
 
-	Step 2 ::
+	sudo apt-get install nasm
 
-		nasm -f elf32 MBCcorrect.asm -o MBCcorrect.o
++Step 2 :
 
-	Step 3 ::
+	nasm -f elf32 MBCcorrect.asm -o MBCcorrect.o
 
-		ld MBCcorrect.o -o MBCcorrect
++Step 3 :
 
-	Step 4 ::
+	ld MBCcorrect.o -o MBCcorrect
 
-		./MBCcorrect 
++Step 4 :
 
-	Step 5 :
-		Then your file(mission_impossible.exe) will be deleted
+	./MBCcorrect 
+
++Step 5 :
+Then your file(mission\-impossible.exe) will be deleted
 
 	MBCerror.asm is similary as MBCcorrect.asm
 
-*if there is some error in your asm code, you can use "gdb debugger" to disassmbler.*
+**if there is some error in your asm code, you can use "gdb debugger" to disassmbler.**
 
 
 How to get the shellcode of MBC :
@@ -73,7 +75,7 @@ You can user the ShellcodeProduct.py to produce the Shellcode::
 	
 
 
---------------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 Remark
 ------
